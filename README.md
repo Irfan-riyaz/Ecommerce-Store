@@ -9,7 +9,7 @@
 
  Admin login with MongoDB verification
 
- Add / 🗑 Delete product functionality (admin side)
+ Add / Delete product functionality (admin side)
 
  Real-time cart summary and checkout
 
