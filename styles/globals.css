@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@keyframes spin360 {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(720deg); /* 2 full spins */
+  }
+}
+
+.animate-spin360-once {
+  animation: spin360 4s linear 1; /* 2 spins in 4 seconds, only once */
+}
+
+ 
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
