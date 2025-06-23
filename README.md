@@ -1,50 +1,79 @@
-# E-Commerce Storefront with Admin Panel
+![Next.js Runtime](next-js-runtime.png)
 
-# Features
- User product catalog with 360° image preview
+# Next.js Runtime
 
- Add to cart with quantity management
+<p align="center">
+  <a aria-label="npm version" href="https://www.npmjs.com/package/@netlify/plugin-nextjs">
+    <img alt="" src="https://img.shields.io/npm/v/@netlify/plugin-nextjs">
+  </a>
+  <a aria-label="MIT License" href="https://img.shields.io/npm/l/@netlify/plugin-nextjs">
+    <img alt="" src="https://img.shields.io/npm/l/@netlify/plugin-nextjs">
+  </a>
+</p>
 
- Razorpay payment integration
+This package handles the build process and creates the runtime environment for Next.js sites on
+Netlify. You should not normally need to install it yourself, as it is used automatically during
+builds of Next.js sites. See
+[the docs for using Next.js on Netlify](https://docs.netlify.com/frameworks/next-js/overview/) for
+more details.
 
- Admin login with MongoDB verification
+Next.js is supported natively on Netlify, and in most cases you will not need to install or
+configure anything. This repo includes the packages used to support Next.js on Netlify.
 
- Add / Delete product functionality (admin side)
+## Prerequisites
 
- Real-time cart summary and checkout
+- Next.js 13.5 or later
+- Node.js 18 or later
+- The latest version of the [Netlify CLI](https://docs.netlify.com/cli/get-started/)
 
-# Tech Stack
-Frontend: Next.js, React, Tailwind CSS
+## Deploying
 
-Backend: Node.js, API Routes (Next.js)
+If you build on Netlify, the Next.js Runtime will work with no additional configuration.
 
-Database: MongoDB Atlas
+## Manually installing the Next.js Runtime
 
-Payments: Razorpay (test mode)
+The Next.js Runtime installs automatically for new Next.js sites on Netlify. You can also install it
+manually in the following ways:
 
-# Getting Started
-Install dependencies:
+### From the UI (Recommended)
 
-npm install
+You can go to the [UI](https://app.netlify.com/plugins/@netlify/plugin-nextjs/install) and choose
+the site to install the Next.js Runtime on. This method is recommended because you will benefit from
+auto-upgrades to important fixes and feature updates.
 
-Create a .env.local file:
+### From `npm`
 
-MONGODB_URI=your_mongodb_connection_string
+```shell
+npm install -D @netlify/plugin-nextjs
+```
 
-Run the dev server:
+...then add the following to your `netlify.toml` file:
 
-npm run dev
+```toml
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+```
 
-# Admin Credentials
-Store admin email & password in your MongoDB users collection.
+This method is recommended if you wish to pin the Next.js Runtime to a specific version.
 
-# Test Payments
-Use Razorpay test key and test card:
+## v4
 
-Card: 4111 1111 1111 1111
+If you are using Next.js 10-13.4 or Node.js < 18, you must use v4 of the Next.js Runtime.
 
-Expiry: Any future date
+If you are still using v4, you can find
+[its README here](https://github.com/netlify/next-runtime/blob/v4/README.md) and the
+[v4 Runtime docs here](https://docs.netlify.com/frameworks/next-js/runtime-v4/overview/).
 
-CVV: 123
+### Upgrading from v4 to v5
 
-OTP: 123456
+To upgrade from v4 to v5, please visit
+[the v5 documentation](https://docs.netlify.com/frameworks/next-js/overview/).
+
+## Feedback
+
+If you think you have found a bug in Next.js on Netlify,
+[please open an issue](https://github.com/opennextjs/opennextjs-netlify/issues). If you have
+comments or feature requests,
+[see the discussion board](https://github.com/opennextjs/opennextjs-netlify/discussions)
+
+Please note that v4 will only receive security fixes and critical bug fixes.

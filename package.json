@@ -1,24 +1,30 @@
 {
-  "name": "ecommerce-store",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+  "name": "@netlify/plugin-nextjs",
+  "version": "5.11.3",
+  "description": "Run Next.js seamlessly on Netlify",
+  "main": "./dist/index.js",
+  "type": "module",
+  "files": [
+    "dist",
+    "edge-runtime",
+    "manifest.yml"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
   },
-  "dependencies": {
-    "@netlify/plugin-nextjs": "^5.11.3",
-    "mongoose": "^7.0.0",
-    "next": "^13.4.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.8.0",
-    "stripe": "^12.0.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opennextjs/opennextjs-netlify.git"
   },
-  "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.5",
-    "tailwindcss": "^3.4.17"
-  }
+  "keywords": [
+    "nextjs",
+    "netlify",
+    "next",
+    "netlify-runtime"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/opennextjs/opennextjs-netlify/issues"
+  },
+  "homepage": "https://opennext.js.org/netlify"
 }
