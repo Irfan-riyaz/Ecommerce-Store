@@ -1,29 +1,56 @@
-import { MongoClient } from 'mongodb';
+// pages/login.js
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
-export default async function handler(req, res) {
-if (req.method !== 'POST') return res.status(405).end();
+export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-const { email, password } = req.body;
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError('');
 
-const client = new MongoClient(process.env.MONGODB_URI);
-try {
-await client.connect();
-const db = client.db('store');
-const user = await db.collection('users').findOne({ email });
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
 
-if (!user || user.password !== password) {
-  return res.status(401).json({ error: 'Invalid credentials' });
-}
+    const data = await res.json();
 
-if (user.role !== 'admin') {
-  return res.status(403).json({ error: 'Access denied' });
-}
+    if (res.ok && data.role === 'admin') {
+      // Redirect to admin dashboard
+      router.push('/admin/products');
+    } else {
+      setError(data.error || 'Login failed');
+    }
+  }
 
-return res.status(200).json({ role: user.role });
-} catch (error) {
-console.error('Login error:', error);
-return res.status(500).json({ error: 'Server error' });
-} finally {
-await client.close();
-}
+  return (
+    <div style={{ padding: '2rem' }}>
+      <h2>Admin Login</h2>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: '300px' }}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          required
+          style={{ marginBottom: '1rem' }}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          required
+          style={{ marginBottom: '1rem' }}
+        />
+        <button type="submit">Login</button>
+      </form>
+      {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
+    </div>
+  );
 }
