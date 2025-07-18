@@ -1,6 +1,6 @@
 // pages/api/products/delete.js
-import db from '@/lib/mongodb';
-import Product from '@/lib/models/Product';
+import db from '../../../lib/mongodb';
+import Product from '../../../lib/models/Product';
 
 export default async function handler(req, res) {
   await db();
